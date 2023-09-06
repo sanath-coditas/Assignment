@@ -7,8 +7,12 @@ import 'dart:async' as _i3;
 import 'dart:convert' as _i4;
 import 'dart:typed_data' as _i5;
 
+import 'package:fininfocom_assessment/presentation/screens/person_bloc/person_bloc.dart'
+    as _i6;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -257,6 +261,128 @@ class MockClient extends _i1.Mock implements _i2.Client {
         Invocation.method(
           #close,
           [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [PersonBloc].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPersonBloc extends _i1.Mock implements _i6.PersonBloc {
+  MockPersonBloc() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.PersonState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _i7.dummyValue<_i6.PersonState>(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i6.PersonState);
+  @override
+  _i3.Stream<_i6.PersonState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i3.Stream<_i6.PersonState>.empty(),
+      ) as _i3.Stream<_i6.PersonState>);
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+  @override
+  void add(_i6.PersonEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onEvent(_i6.PersonEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #onEvent,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void emit(_i6.PersonState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void on<E extends _i6.PersonEvent>(
+    _i8.EventHandler<E, _i6.PersonState>? handler, {
+    _i8.EventTransformer<E>? transformer,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #on,
+          [handler],
+          {#transformer: transformer},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onTransition(
+          _i8.Transition<_i6.PersonEvent, _i6.PersonState>? transition) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onTransition,
+          [transition],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i3.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  void onChange(_i8.Change<_i6.PersonState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
         ),
         returnValueForMissingStub: null,
       );

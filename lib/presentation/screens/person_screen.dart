@@ -26,6 +26,11 @@ class PersonScreen extends StatelessWidget {
             if (state is PersonSuccess) {
               return PersonDetailsWidget(personModel: state.personModel);
             }
+            if (state is PersonFailure) {
+              return const Center(
+                child: Text('Something wnet wrong!'),
+              );
+            }
             return const SizedBox.shrink();
           },
         ),
@@ -59,7 +64,7 @@ class PersonDetailsWidget extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    personModel.picture.large,
+                    personModel.picture?.large ?? '',
                   ),
                 ),
               ),
@@ -68,12 +73,13 @@ class PersonDetailsWidget extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Text('Name: ${personModel.name.first}'),
-          Text('City: ${personModel.location.city}'),
+          Text('Name: ${personModel.name?.first}'),
+          Text('City: ${personModel.location?.city}'),
           Text('Email: ${personModel.email}'),
-          Text('DOB: ${convertTZStringToDDMMYYYY(personModel.dob.date)}'),
           Text(
-              'Registerd days: ${getNumberOfDaysFromTZFormatString(personModel.registered.date)} days'),
+              'DOB: ${convertTZStringToDDMMYYYY(personModel.dob?.date ?? '')}'),
+          Text(
+              'Registerd days: ${getNumberOfDaysFromTZFormatString(personModel.registered?.date ?? '')} days'),
         ],
       ),
     );
