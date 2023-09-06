@@ -39,6 +39,7 @@ class MainActivity: FlutterActivity() {
     @SuppressLint("MissingPermission")
     @RequiresApi(VERSION_CODES.M)
     private fun disableBluetooth(result: MethodChannel.Result) {
+        val REQUEST_DISABLE_BT = 1
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.adapter
         if (bluetoothAdapter == null) {
@@ -46,9 +47,17 @@ class MainActivity: FlutterActivity() {
         }
         else{
             if (bluetoothAdapter?.isEnabled == true){
-                bluetoothAdapter?.disable()
-                result.success(true)
-                Toast.makeText(this,"Bluetooth Disabled",Toast.LENGTH_SHORT).show()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    val enableBtIntent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
+                    startActivityForResult(enableBtIntent, REQUEST_DISABLE_BT)
+                }
+                else{
+                    bluetoothAdapter?.disable()
+                    result.success(true)
+                    Toast.makeText(this,"Bluetooth Disabled",Toast.LENGTH_SHORT).show()
+                }
+
+
             }else{
                 Toast.makeText(this,"Bluetooth Not Enabled",Toast.LENGTH_SHORT).show()
             }
@@ -83,18 +92,6 @@ class MainActivity: FlutterActivity() {
             }
         }
         }
-
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if(requestCode == 1){
-//            if(resultCode == RESULT_OK){
-//                Toast.makeText(this,"Enabled",Toast.LENGTH_SHORT)
-//            }else{
-//                Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
-//            }
-//        }
-//    }
 
     }
 
